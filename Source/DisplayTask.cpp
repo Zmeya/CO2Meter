@@ -30,8 +30,7 @@ CDisplayTask::CDisplayTask()
 
 	//Настройка SPI1 (Master) 8 бит данных, MSB передается первым, программный режим управления NSS вывод NSS (PA4) разрешено использовать в качестве выхода
 	RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;		//Тактирование модуля SPI1
-	//SPI1->CR1 &= ~SPI_CR1_BR;				//Baud rate = Fpclk/256
-	SPI1->CR1 |= SPI_CR1_BR_0;
+	SPI1->CR1 &= ~SPI_CR1_BR;				//Baud rate = Fpclk/2
 	SPI1->CR1 &= ~SPI_CR1_CPOL;				//Полярность тактового сигнала
 	SPI1->CR1 &= ~SPI_CR1_CPHA;				//Фаза тактового сигнала
 	SPI1->CR1 &= ~SPI_CR1_DFF;				//8 бит данных
@@ -79,7 +78,7 @@ void CDisplayTask::Run(void const *pParam)
 	// Init LCD
 	InitializeLCD();
 	// Fill with white color
-	Fill(ILI9341_COLOR_WHITE);
+	Fill(ILI9341_COLOR_BLACK);
 	Rotate(Orientation_Landscape);
 	
 	BacklightEnable(1);
@@ -87,6 +86,7 @@ void CDisplayTask::Run(void const *pParam)
 	m_bInitialize = 1;
 	while(1)
 	{
+		vTaskDelay(100);
 	}
 }
 void CDisplayTask::SetCSPin(uint8_t bEnable)
@@ -276,26 +276,9 @@ void CDisplayTask::FillRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t
 	SetCSPin(1);
 }
 void CDisplayTask::DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
-	/* Code by dewoller: https://github.com/dewoller */
-
 	int16_t dx, dy, sx, sy, err, e2;
 	uint16_t tmp;
 
-	/* Check for overflow */
-	/*if (x0 >= ILI9341_WIDTH) {
-		x0 = ILI9341_WIDTH - 1;
-	}
-	if (x1 >= ILI9341_WIDTH) {
-		x1 = ILI9341_WIDTH - 1;
-	}
-	if (y0 >= ILI9341_HEIGHT) {
-		y0 = ILI9341_HEIGHT - 1;
-	}
-	if (y1 >= ILI9341_HEIGHT) {
-		y1 = ILI9341_HEIGHT - 1;
-	}*/
-
-	/* Check correction */
 	if (x0 > x1) {
 		tmp = x0;
 		x0 = x1;
@@ -337,10 +320,10 @@ void CDisplayTask::DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, 
 	}
 }
 void CDisplayTask::DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
-	DrawLine(x0, y0, x1, y0, color); //Top
-	DrawLine(x0, y0, x0, y1, color);	//Left
-	DrawLine(x1, y0, x1, y1, color);	//Right
-	DrawLine(x0, y1, x1, y1, color);	//Bottom
+	DrawLine(x0, y0, x1, y0, color);
+	DrawLine(x0, y0, x0, y1, color);
+	DrawLine(x1, y0, x1, y1, color);
+	DrawLine(x0, y1, x1, y1, color);
 }
 void CDisplayTask::DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
 	uint16_t tmp;

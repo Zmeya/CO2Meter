@@ -142,7 +142,7 @@ signed long xSerialPutChar(char cOutChar, TickType_t xBlockTime )
 }
 /*-----------------------------------------------------------*/
 
-void USART1_IRQHandler( void )
+void USART1_IRQHandler1( void )
 {
 	long xHigherPriorityTaskWoken = pdFALSE;
 	char cChar;

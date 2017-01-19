@@ -4,14 +4,17 @@
 #include "MainTask.h"
 #include "CO2Task.h"
 #include "DisplayTask.h"
+#include "xprintf.h"
 
 void TaskRun(void *pParam);
 
 #define HSEStartUp_TimeOut 1000
+
+TaskHandle_t CO2Task = NULL;
+
 int RCC_Init(void)
 {
 	__IO uint32_t StartUpCounter = 0, HSEStatus = 0;
-
 	// Конфигурацяи  SYSCLK, HCLK, PCLK2 и PCLK1
 	RCC->CR |= RCC_CR_HSEON;	// Включаем HSE
 
@@ -66,9 +69,9 @@ int main(void)
 		SystemInit();
 	SystemCoreClockUpdate();
 
+	xTaskCreate(TaskRun, "DisplayTask", 100, CDisplayTask::GetInstance(), 0, NULL);
 	xTaskCreate(TaskRun, "MainTask", 80, CMainTask::GetInstance(), 0, NULL);
-	xTaskCreate(TaskRun, "CO2Task", 240, CCO2Task::GetInstance(), 0, NULL);
-	xTaskCreate(TaskRun, "DisplayTask", 50, CDisplayTask::GetInstance(), 0, NULL);
+	xTaskCreate(TaskRun, "CO2Task", 250, CCO2Task::GetInstance(), 0, &CO2Task);
 
 	osKernelStart();
 	while (1);
@@ -79,7 +82,14 @@ void TaskRun(void *pParam)
 	while (1);
 }
 
+char pBuffer[250] = { 0 };
+extern "C" void vAssertCalled(const char * pFileNmae, unsigned long LineNumber)
+{
+	xsprintf(pBuffer, "Assertion!!!\nFile: %s\nLine %d", pFileNmae, LineNumber);
+	CDisplayTask::GetInstance()->DrawString(0, 0, pBuffer, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 
+	while (true);
+}
 
 void* operator new(size_t sz)
 {
