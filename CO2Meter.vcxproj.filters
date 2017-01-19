@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Drivers">
+      <UniqueIdentifier>{7fa2dcfa-400b-4d3d-a123-43b08b560637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\CMSIS">
+      <UniqueIdentifier>{e0e638fc-dcf1-4bdb-b534-81896aee6455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\CMSIS\Header Files">
+      <UniqueIdentifier>{1838d392-8a4a-45a5-980d-781bcb8e92d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\CMSIS\Source Files">
+      <UniqueIdentifier>{ae431269-dafc-4051-bb67-63a0e6086f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS">
+      <UniqueIdentifier>{27208a10-949a-42ae-9bf6-bcbf962f3bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS\Header Files">
+      <UniqueIdentifier>{9c44a162-4a1c-478f-94f7-b619cec0809a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeRTOS\Source Files">
+      <UniqueIdentifier>{74e7c9ea-19e7-4133-ae42-bef0ea9d63ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\STM32F1 STL">
+      <UniqueIdentifier>{fcc21e6f-b8d2-4ea5-b737-68340eea7a8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\STM32F1 STL\Header Files">
+      <UniqueIdentifier>{1a2a0437-4991-44cc-9c7b-9c060d39d83e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Drivers\STM32F1 STL\Source Files">
+      <UniqueIdentifier>{5ca3e965-cacf-4233-91b8-b97f14ee3e96}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="Drivers\CMSIS\Source\startup_stm32f103xb.s">
+      <Filter>Drivers\CMSIS\Source Files</Filter>
+    </None>
+    <None Include="Drivers\CMSIS\stm32f103c8.ld">
+      <Filter>Drivers\CMSIS</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\CO2Task.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DisplayTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\xprintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\CMSIS\Source\cmsis_os.c">
+      <Filter>Drivers\CMSIS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\CMSIS\Source\system_stm32f1xx.c">
+      <Filter>Drivers\CMSIS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\croutine.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\event_groups.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\heap.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\list.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\port.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\queue.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\tasks.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeRTOS\Source\timers.c">
+      <Filter>FreeRTOS\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\fonts.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Interrupts.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\uart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\misc.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_adc.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_bkp.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_can.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_cec.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_crc.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_dac.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_dbgmcu.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_dma.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_exti.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_flash.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_fsmc.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_gpio.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_i2c.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_iwdg.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_pwr.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_rcc.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_rtc.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_sdio.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_spi.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_tim.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_usart.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_wwdg.c">
+      <Filter>Drivers\STM32F1 STL\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\CO2Task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DisplayTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FreeRTOSConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ITask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MainTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\xprintf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_gcc.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_os.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm3.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cmFunc.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cmInstr.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\core_cmSimd.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\stm32f103xb.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\stm32f1xx.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\CMSIS\Include\system_stm32f1xx.h">
+      <Filter>Drivers\CMSIS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\croutine.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\event_groups.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\FreeRTOS.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\list.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\portable.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\portmacro.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\projdefs.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\queue.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\semphr.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\StackMacros.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\task.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeRTOS\Include\timers.h">
+      <Filter>FreeRTOS\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\fonts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\uart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\misc.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_adc.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_bkp.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_can.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_cec.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_crc.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_dac.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_dbgmcu.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_dma.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_exti.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_flash.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_fsmc.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_gpio.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_i2c.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_iwdg.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_pwr.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_rcc.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_rtc.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_sdio.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_spi.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_tim.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_usart.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_wwdg.h">
+      <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

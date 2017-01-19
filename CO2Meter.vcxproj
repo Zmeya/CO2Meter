@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ApplicationType>LinuxDebugger</ApplicationType>
+    <SecureShellExecutable>ssh</SecureShellExecutable>
+    <RemoteDebuggerExecutable>gdb</RemoteDebuggerExecutable>
+    <LocalDebuggerExecutable>gdb</LocalDebuggerExecutable>
+    <OCDDebuggerServerAddress>localhost:3333</OCDDebuggerServerAddress>
+    <Keyword>IoT</Keyword>
+    <ProjectGuid>{DE1551AD-200A-48F9-BA3C-6FDA9573545A}</ProjectGuid>
+    <ProjectName>CO2Meter</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <!--Import Project="$(MSBuildThisFileDirectory)\Microsoft.cpp.Linux.targets" /-->
+  <!-- To Enable linux debugger -->
+  <PropertyGroup>
+    <UseDefaultDebuggersPropertyPageSchemas>false</UseDefaultDebuggersPropertyPageSchemas>
+    <UseDefaultPropertyPageSchemas>false</UseDefaultPropertyPageSchemas>
+    <_ApplicableDebuggers>Desktop</_ApplicableDebuggers>
+    <DebuggerFlavor>LinuxDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\ProjectItemsSchema.xml" />
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\directories.xml" />
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_general.xml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\LinuxDebugger.xaml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\LocalDebugger.xaml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\OCDDebugger.xaml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\Assets\linux_nmake.xaml" />
+    <!-- project only rules -->
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_makefile.xml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <!-- Property sheet only rules -->
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_makefile_ps.xml;$(VCTargetsPath)$(LangID)\usermacros.xml">
+      <Context>PropertySheet</Context>
+    </PropertyPageSchema>
+    <!-- File only rules -->
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_file.xml">
+      <Context>File</Context>
+    </PropertyPageSchema>
+  </ItemGroup>
+  <ItemGroup>
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\LinuxDebugger.xaml" />
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\LocalDebugger.xaml" />
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\OCDDebugger.xaml" />
+    <DesktopDebuggerPages Include="$(MSBuildThisFileDirectory)\Assets\linux_nmake.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectCapability Include="Linux" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Drivers\CMSIS\Source\startup_stm32f103xb.s" />
+    <None Include="Drivers\CMSIS\stm32f103c8.ld" />
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Drivers\CMSIS\Source\cmsis_os.c" />
+    <ClCompile Include="Drivers\CMSIS\Source\system_stm32f1xx.c" />
+    <ClCompile Include="Drivers\SPL\src\misc.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_adc.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_bkp.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_can.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_cec.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_crc.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_dac.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_dbgmcu.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_dma.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_exti.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_flash.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_fsmc.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_gpio.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_i2c.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_iwdg.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_pwr.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_rcc.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_rtc.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_sdio.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_spi.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_tim.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_usart.c" />
+    <ClCompile Include="Drivers\SPL\src\stm32f10x_wwdg.c" />
+    <ClCompile Include="FreeRTOS\Source\croutine.c" />
+    <ClCompile Include="FreeRTOS\Source\event_groups.c" />
+    <ClCompile Include="FreeRTOS\Source\heap.c" />
+    <ClCompile Include="FreeRTOS\Source\list.c" />
+    <ClCompile Include="FreeRTOS\Source\port.c" />
+    <ClCompile Include="FreeRTOS\Source\queue.c" />
+    <ClCompile Include="FreeRTOS\Source\tasks.c" />
+    <ClCompile Include="FreeRTOS\Source\timers.c" />
+    <ClCompile Include="Source\CO2Task.cpp" />
+    <ClCompile Include="Source\DisplayTask.cpp" />
+    <ClCompile Include="Source\fonts.c" />
+    <ClCompile Include="Source\Interrupts.c" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\MainTask.cpp" />
+    <ClCompile Include="Source\uart.c" />
+    <ClCompile Include="Source\xprintf.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_gcc.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\cmsis_os.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cm3.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cmFunc.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cmInstr.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\core_cmSimd.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\stm32f103xb.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\stm32f1xx.h" />
+    <ClInclude Include="Drivers\CMSIS\Include\system_stm32f1xx.h" />
+    <ClInclude Include="Drivers\SPL\inc\misc.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_adc.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_bkp.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_can.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_cec.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_crc.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_dac.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_dbgmcu.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_dma.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_exti.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_flash.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_fsmc.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_gpio.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_i2c.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_iwdg.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_pwr.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_rcc.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_rtc.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_sdio.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_spi.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_tim.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_usart.h" />
+    <ClInclude Include="Drivers\SPL\inc\stm32f10x_wwdg.h" />
+    <ClInclude Include="FreeRTOS\Include\croutine.h" />
+    <ClInclude Include="FreeRTOS\Include\event_groups.h" />
+    <ClInclude Include="FreeRTOS\Include\FreeRTOS.h" />
+    <ClInclude Include="FreeRTOS\Include\list.h" />
+    <ClInclude Include="FreeRTOS\Include\portable.h" />
+    <ClInclude Include="FreeRTOS\Include\portmacro.h" />
+    <ClInclude Include="FreeRTOS\Include\projdefs.h" />
+    <ClInclude Include="FreeRTOS\Include\queue.h" />
+    <ClInclude Include="FreeRTOS\Include\semphr.h" />
+    <ClInclude Include="FreeRTOS\Include\StackMacros.h" />
+    <ClInclude Include="FreeRTOS\Include\task.h" />
+    <ClInclude Include="FreeRTOS\Include\timers.h" />
+    <ClInclude Include="Include\CO2Task.h" />
+    <ClInclude Include="Include\DisplayTask.h" />
+    <ClInclude Include="Include\fonts.h" />
+    <ClInclude Include="Include\FreeRTOSConfig.h" />
+    <ClInclude Include="Include\ITask.h" />
+    <ClInclude Include="Include\MainTask.h" />
+    <ClInclude Include="Include\uart.h" />
+    <ClInclude Include="Include\xprintf.h" />
+  </ItemGroup>
+  <!-- To Enable linux debugger End -->
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <NMakeBuildCommandLine>make PLATFORM=$(Platform) OUT_DIR=$(OutDir) PROJECT_NAME=$(ProjectName) BUILD=$(Configuration) program</NMakeBuildCommandLine>
+    <IncludePath>.\Include;.\Drivers\CMSIS\Include;.\FreeRTOS\Include</IncludePath>
+    <ReferencePath />
+    <LibraryPath />
+    <LibraryWPath />
+    <SourcePath>.\Source;.\Drivers\CMSIS\Source;.\FreeRTOS\Source</SourcePath>
+    <NMakeReBuildCommandLine>make PLATFORM=$(Platform) OUT_DIR=$(OutDir) PROJECT_NAME=$(ProjectName) BUILD=$(Configuration) rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>make PLATFORM=$(Platform) OUT_DIR=$(OutDir) PROJECT_NAME=$(ProjectName) BUILD=$(Configuration) clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>STM32F103xB</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <NMakeBuildCommandLine>make PLATFORM=$(Platform) OUT_DIR=$(OutDir) PROJECT_NAME=$(ProjectName) BUILD=$(Configuration) program</NMakeBuildCommandLine>
+    <IncludePath>.\Include;.\Drivers\CMSIS\Include;.\FreeRTOS\Include</IncludePath>
+    <ReferencePath />
+    <LibraryPath />
+    <LibraryWPath />
+    <SourcePath>.\Source;.\Drivers\CMSIS\Source;.\FreeRTOS\Source</SourcePath>
+    <NMakeReBuildCommandLine>make PLATFORM=$(Platform) OUT_DIR=$(OutDir) PROJECT_NAME=$(ProjectName) BUILD=$(Configuration) rebuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>make PLATFORM=$(Platform) OUT_DIR=$(OutDir) PROJECT_NAME=$(ProjectName) BUILD=$(Configuration) clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>STM32F103xB</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
