@@ -105,7 +105,7 @@ void CCO2Task::Run(void const *pParam)
 			CDisplayDriver::GetInstance()->DrawLine(0, clr - 1, ILI9341_HEIGHT, clr - 1, Black);
 			CDisplayDriver::GetInstance()->FillRectangle(0, clr, ILI9341_HEIGHT, ILI9341_WIDTH, White);
 			for (uint16_t i = ILI9341_HEIGHT - nCount; i < ILI9341_HEIGHT; i++, CurPos++)
-				CDisplayDriver::GetInstance()->DrawLine(i, ILI9341_WIDTH - (CO2BarGraph[CurPos] * (clr) / 3500.0), i, ILI9341_WIDTH, CO2BarGraph[CurPos] >= 2000 ? Red : Green);
+				CDisplayDriver::GetInstance()->DrawLine(i, ILI9341_WIDTH - (CO2BarGraph[CurPos] * (clr) / 3700.0), i, ILI9341_WIDTH, CO2BarGraph[CurPos] >= 2000 ? Red : Green);
 		}
 
 		vTaskDelay(5000);
