@@ -64,7 +64,8 @@
 #define configMAX_API_CALL_INTERRUPT_PRIORITY	0xA0
 
 // Define to trap errors during development.
-#define configASSERT( x ) if ((x) == 0) vAssertCalled( __FILE__, __LINE__ )
+void vAssertCalled(const char * pFileNmae, unsigned long LineNumber);
+#define configASSERT(x) if ((x) == 0) vAssertCalled( __FILE__, __LINE__ );
 
 // FreeRTOS MPU specific definitions.
 #define configINCLUDE_APPLICATION_DEFINED_PRIVILEGED_FUNCTIONS 0
@@ -89,7 +90,6 @@
 #define INCLUDE_xTaskResumeFromISR              1
 
 // Definitions that map the FreeRTOS port interrupt handlers to their CMSIS standard names.
-
 #define xPortSysTickHandler SysTick_Handler
 #define xPortPendSVHandler PendSV_Handler
 #define vPortSVCHandler SVC_Handler

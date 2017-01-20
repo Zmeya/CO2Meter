@@ -3,7 +3,7 @@
 #include "task.h"
 #include "MainTask.h"
 #include "CO2Task.h"
-#include "DisplayTask.h"
+#include "DisplayDriver.h"
 #include "xprintf.h"
 
 void TaskRun(void *pParam);
@@ -69,8 +69,7 @@ int main(void)
 		SystemInit();
 	SystemCoreClockUpdate();
 
-	xTaskCreate(TaskRun, "DisplayTask", 100, CDisplayTask::GetInstance(), 0, NULL);
-	xTaskCreate(TaskRun, "MainTask", 80, CMainTask::GetInstance(), 0, NULL);
+	xTaskCreate(TaskRun, "MainTask", 250, CMainTask::GetInstance(), 0, NULL);
 	xTaskCreate(TaskRun, "CO2Task", 250, CCO2Task::GetInstance(), 0, &CO2Task);
 
 	osKernelStart();
@@ -86,7 +85,7 @@ char pBuffer[250] = { 0 };
 extern "C" void vAssertCalled(const char * pFileNmae, unsigned long LineNumber)
 {
 	xsprintf(pBuffer, "Assertion!!!\nFile: %s\nLine %d", pFileNmae, LineNumber);
-	CDisplayTask::GetInstance()->DrawString(0, 0, pBuffer, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+	CDisplayDriver::GetInstance()->DrawString(0, 0, pBuffer, &TM_Font_7x10, Black, White);
 
 	while (true);
 }
@@ -106,22 +105,4 @@ void operator delete(void * p)
 void operator delete[](void * p)
 {
 	vPortFree(p);
-}
-
-//placement version
-void* operator new(size_t size, void* p)
-{
-	(void)size;
-	return p;
-}
-void* operator new[](size_t size, void* p)
-{
-	(void)size;
-	return p;
-}
-void operator delete (void*, void*)
-{
-}
-void operator delete[](void*, void*)
-{
 }

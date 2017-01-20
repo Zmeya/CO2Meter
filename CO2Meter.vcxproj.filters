@@ -53,9 +53,6 @@
     <ClCompile Include="Source\CO2Task.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DisplayTask.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -173,12 +170,12 @@
     <ClCompile Include="Drivers\SPL\src\stm32f10x_wwdg.c">
       <Filter>Drivers\STM32F1 STL\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DisplayDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\CO2Task.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\DisplayTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\FreeRTOSConfig.h">
@@ -330,6 +327,9 @@
     </ClInclude>
     <ClInclude Include="Drivers\SPL\inc\stm32f10x_wwdg.h">
       <Filter>Drivers\STM32F1 STL\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DisplayDriver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

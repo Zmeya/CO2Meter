@@ -5,7 +5,7 @@
 #include "CO2Task.h"
 #include "uart.h"
 #include "xprintf.h"
-#include "DisplayTask.h"
+#include "DisplayDriver.h"
 #include "fonts.h"
 
 extern TaskHandle_t CO2Task;
@@ -19,17 +19,8 @@ extern TaskHandle_t CO2Task;
 */
 
 const uint8_t CO2Cmd[9] = { 0xFF,0x01,0x86,0x00,0x00,0x00,0x00,0x00,0x79 };
-volatile uint8_t CO2Reseive[9];
-
-typedef struct CO2Data
-{
-	uint8_t bStartingByte;
-	uint8_t bCommand;
-	uint8_t bHLConcentration; // Gas concentration= high level * 256 + low level
-	uint8_t bLLConcentration;
-	uint8_t bReserved[4];
-	uint8_t bCRC;
-} CO2Data_t;
+volatile uint8_t CO2Reseive[9] = { 0 };
+uint16_t CO2BarGraph[ILI9341_HEIGHT] = { 400, 500, 800, 2000, 5000, 4000, 300, 1200, 1500, 40 };
 
 CCO2Task * CCO2Task::m_Instance = 0;
 
@@ -69,8 +60,7 @@ CCO2Task * CCO2Task::GetInstance(void)
 
 void CCO2Task::Run(void const *pParam)
 {
-	char Recv = 0;
-	uint16_t strWidth = 0, strHeight = 0, strX, strY;
+	uint16_t strWidth = 0, strHeight = 0, strX, strY, nCount = 0, CurPos = 0;
 
 	char pBuffer[20] = { 0 };
 	while (1)
@@ -83,8 +73,8 @@ void CCO2Task::Run(void const *pParam)
 		}
 		taskEXIT_CRITICAL();
 
-		vTaskDelay(1000);
-
+		ulTaskNotifyTake(pdTRUE, 1000);
+		
 		char PackCRC = 0;
 		for (int i = 1; i < 8; i++) {
 			PackCRC += CO2Reseive[i];
@@ -95,26 +85,30 @@ void CCO2Task::Run(void const *pParam)
 		if (CO2Reseive[0] == 0xFF && CO2Reseive[1] == 0x86 && CO2Reseive[8] == PackCRC) {
 			int co2 = CO2Reseive[2] * 255 + CO2Reseive[3];
 			xsprintf(pBuffer, "CO2 = %04d ppm", co2);
-			CDisplayTask::GetInstance()->GetStringSize(pBuffer, &TM_Font_16x26, &strWidth, &strHeight);
+			CDisplayDriver::GetInstance()->GetStringSize(pBuffer, &TM_Font_16x26, &strWidth, &strHeight);
 			strX = (ILI9341_HEIGHT / 2) - (strWidth / 2);
 			strY = (ILI9341_WIDTH / 2) - (strHeight / 2);
-			CDisplayTask::GetInstance()->DrawFilledRectangle(strX - 3, strY - 3, (strX - 3) + (strWidth + 3) + 1, (strY - 3) + (strHeight + 3) + 1, ILI9341_COLOR_WHITE);
-			CDisplayTask::GetInstance()->DrawString(strX, strY, pBuffer, &TM_Font_16x26, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-			
+			CDisplayDriver::GetInstance()->DrawString(strX, strY, pBuffer, &TM_Font_16x26, Black, White);
+			CDisplayDriver::GetInstance()->DrawRectangle(strX - 3, strY - 3, (strX - 3) + (strWidth + 4), (strY - 3) + (strHeight + 4), Black);
 			memset((void*)CO2Reseive, 0, 9);
+
+			CO2BarGraph[nCount++] = co2;
+			if (CO2BarGraph[nCount-1] > 2500)
+				CO2BarGraph[nCount-1] = 2500;
+			if (nCount > ILI9341_HEIGHT - 2)
+			{
+				nCount = 0;
+				
+			}
+			CurPos = 0;
+			float clr = strY + strHeight + 10;
+			CDisplayDriver::GetInstance()->DrawLine(0, clr - 1, ILI9341_HEIGHT, clr - 1, Black);
+			CDisplayDriver::GetInstance()->FillRectangle(0, clr, ILI9341_HEIGHT, ILI9341_WIDTH, White);
+			for (uint16_t i = ILI9341_HEIGHT - nCount; i < ILI9341_HEIGHT; i++, CurPos++)
+				CDisplayDriver::GetInstance()->DrawLine(i, ILI9341_WIDTH - (CO2BarGraph[CurPos] * (clr) / 3500.0), i, ILI9341_WIDTH, CO2BarGraph[CurPos] >= 2000 ? Red : Green);
 		}
-		else
-		{
-			char *pWait = "Please Wait...";
-			CDisplayTask::GetInstance()->GetStringSize(pWait, &TM_Font_11x18, &strWidth, &strHeight);
-			strX = (ILI9341_HEIGHT / 2) - (strWidth / 2);
-			strY = (ILI9341_WIDTH / 2) - (strHeight / 2);
-			CDisplayTask::GetInstance()->DrawFilledRectangle(strX - 3, strY - 3, (strX - 3) + (strWidth + 3) + 1, (strY - 3) + (strHeight + 3) + 1, ILI9341_COLOR_WHITE);
-			CDisplayTask::GetInstance()->DrawString(strX, strY, pWait, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-			//CDisplayTask::GetInstance()->DrawRectangle(strX - 3, strY - 3, (strX - 3) + (strWidth + 3), (strY - 3) + (strHeight + 3), ILI9341_COLOR_BLACK);
-			//memset((void*)CO2Reseive, 0, 9);
-		}
-		ulTaskNotifyTake(pdTRUE, 5000);
+
+		vTaskDelay(5000);
 	}
 }
 

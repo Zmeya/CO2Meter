@@ -121,7 +121,7 @@
     <ClCompile Include="FreeRTOS\Source\tasks.c" />
     <ClCompile Include="FreeRTOS\Source\timers.c" />
     <ClCompile Include="Source\CO2Task.cpp" />
-    <ClCompile Include="Source\DisplayTask.cpp" />
+    <ClCompile Include="Source\DisplayDriver.cpp" />
     <ClCompile Include="Source\fonts.c" />
     <ClCompile Include="Source\Interrupts.c" />
     <ClCompile Include="Source\main.cpp" />
@@ -175,7 +175,7 @@
     <ClInclude Include="FreeRTOS\Include\task.h" />
     <ClInclude Include="FreeRTOS\Include\timers.h" />
     <ClInclude Include="Include\CO2Task.h" />
-    <ClInclude Include="Include\DisplayTask.h" />
+    <ClInclude Include="Include\DisplayDriver.h" />
     <ClInclude Include="Include\fonts.h" />
     <ClInclude Include="Include\FreeRTOSConfig.h" />
     <ClInclude Include="Include\ITask.h" />
